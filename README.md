@@ -55,3 +55,8 @@ docker-compose down -v
 * Creada configuracion de babel
 * Creada configuracion de Dcoker
 * Creada configuracion de la base de datos
+
+#### 0.2.0
+
+* Creado enpoint para la creacion de reservas
+* Creadas validaciones para la creacion de reservas

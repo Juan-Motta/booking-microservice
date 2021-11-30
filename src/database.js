@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 //MongoDB connection
-const connectDb = () => {
+const dbConnect = () => {
     mongoose.connect(process.env.MONGODB_URI)
         .then(() => {
             console.log(`Connected to MongoDB`);
@@ -12,4 +12,4 @@ const connectDb = () => {
 
 }
 
-export default connectDb;
+export default dbConnect;
