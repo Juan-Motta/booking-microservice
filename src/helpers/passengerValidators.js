@@ -1,13 +1,18 @@
-const passengerValidations = (passengers, ride_id) => {
+const passengerValidations = (passengers) => {
     let errors = {};
     passengers.forEach((passenger, index) => {
         const { name, last_name, document, birth, phone, seat } = passenger;
         let passengerErrors = {};
         let message;
 
-        message = nameValidation(name, last_name);
+        message = nameValidation(name);
         if (message) {
             passengerErrors.name = message;
+            message = null;
+        }
+        message = lastNameValidation(last_name);
+        if (message) {
+            passengerErrors.last_name = message;
             message = null;
         }
         message = documentValidation(document);
@@ -25,7 +30,7 @@ const passengerValidations = (passengers, ride_id) => {
             passengerErrors.phone = message;
             message = null;
         }
-        message = seatValidation(seat, ride_id);
+        message = seatValidation(seat);
         if (message) {
             passengerErrors.seat = message;
             message = null;
@@ -40,9 +45,15 @@ const passengerValidations = (passengers, ride_id) => {
     return errors;
 }
 
-const nameValidation = (name, last_name) => {
-    if (!name || !last_name || name.length === 0 || last_name.length === 0) {
-        return `El nombre y/o apellido deben ser validos`;
+const nameValidation = (name) => {
+    if (!name || name.length === 0) {
+        return `El nombre debe ser valido`;
+    }
+}
+
+const lastNameValidation = (last_name) => {
+    if (!last_name || last_name.length === 0) {
+        return `El apellido debe ser valido`;
     }
 }
 
@@ -71,4 +82,56 @@ const seatValidation = (seat) => {
     }
 }
 
-export default passengerValidations;
+const passengerUpdateValidations = (passenger) => {
+    let errors = {};
+    const { name, last_name, document, birth, phone, seat } = passenger;
+    let message;
+
+    if (name) {
+        message = nameValidation(name);
+        if (message) {
+            errors.name = message;
+            message = null;
+        }
+    }
+    if (last_name) {
+        message = nameValidation(last_name);
+        if (message) {
+            errors.last_name = message;
+            message = null;
+        }
+    }
+    if (document) {
+        message = documentValidation(document);
+        if (message) {
+            errors.document = message;
+            message = null;
+        }
+    }
+    if (birth) {
+        message = birthValidation(birth);
+        if (message) {
+            errors.birth = message;
+            message = null;
+        }
+    }
+    if (phone) {
+        message = phoneValidation(phone);
+        if (message) {
+            errors.phone = message;
+            message = null;
+        }
+    }
+    if (seat) {
+        message = seatValidation(seat);
+        if (message) {
+            errors.seat = message;
+            message = null;
+        }
+    }
+
+    return errors;
+}
+
+
+export { passengerValidations, passengerUpdateValidations };

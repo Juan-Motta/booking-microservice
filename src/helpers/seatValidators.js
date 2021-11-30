@@ -4,6 +4,11 @@ const isRepeatedSeat = (ride_id, seats) => {
     return new Promise((resolve, reject) => {
         const occupiedSeats = []
         const errors = {};
+
+        const seatsSet = new Set(seats);
+        if (seats.length > seatsSet.size) {
+            return reject({ message: 'Los puestos no pueden estar repetidos' });
+        }
         Booking.find({ ride_id })
             .then(bookingArray => {
                 bookingArray.forEach(bookingElement => {

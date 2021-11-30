@@ -3,35 +3,23 @@ import controllers from '../controllers/bookingControllers';
 
 const router = express.Router();
 
-router.get('/id/:id', (req, res) => {
-    res.send('Reserva');
-});
+router.get('/id/:id', controllers.getBookingById);
 
-router.get('/code/:code', (req, res) => {
-    res.send('especifico');
-});
+router.get('/all', controllers.getAllBookings);
 
-router.get('/all', (req, res) => {
-    res.send('All');
-});
+router.get('/all/ride/id/:id', controllers.getBookingsByRideId);
 
-router.get('/all/ride/id/:id', (req, res) => {
-    res.send('All');
-});
+router.get('/all/user/id/:id', controllers.getBookingsByUserId);
 
-router.get('/all/user/id/:id', (req, res) => {
-    res.send('All');
-});
+router.get('/seats/ride/id/:id', controllers.getAvailableSeatsByRideId);
 
 router.post('/create', controllers.createBooking);
 
-router.put('/id/:id', (req, res) => {
-    res.send('Reserva');
-});
+router.put('/id/:id', controllers.findOneBookingAndUpdate);
 
-router.delete('/id/:id', (req, res) => {
-    res.send('Reserva');
-});
+router.put('/id/:booking_id/passenger/id/:passenger_id', controllers.findOnePassengerAndUpdateById);
+
+router.delete('/id/:id', controllers.deleteBooking);
 
 
 
