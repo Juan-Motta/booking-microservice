@@ -196,3 +196,7 @@ http://localhost:3000/api/bookings/id/<id reserva>
 #### 0.4.0
 
 * Corregido error "La silla ya se encuentra ocupada" que aparecia al intentar modificar los datos de un pasajero sin modificar el numero de la silla.
+
+#### 1.0.0
+
+* Creada version de produccion.
