@@ -192,3 +192,7 @@ http://localhost:3000/api/bookings/id/<id reserva>
 * Creados endpoints para la obtencion, modificacion y eliminacion de reservas
 * Creado endpoint para la obtencion de sillas ocupada
 * Creado endpoint para la edicion de pasajeros
+
+#### 0.4.0
+
+* Corregido error "La silla ya se encuentra ocupada" que aparecia al intentar modificar los datos de un pasajero sin modificar el numero de la silla.

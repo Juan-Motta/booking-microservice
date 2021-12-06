@@ -1,6 +1,6 @@
 import Booking from '../models/bookingModel';
 
-const isRepeatedSeat = (ride_id, seats) => {
+const isRepeatedSeat = (ride_id, passengerId, seats) => {
     return new Promise((resolve, reject) => {
         const occupiedSeats = []
         const errors = {};
@@ -13,7 +13,9 @@ const isRepeatedSeat = (ride_id, seats) => {
             .then(bookingArray => {
                 bookingArray.forEach(bookingElement => {
                     bookingElement.passengers.forEach(passenger => {
-                        occupiedSeats.push(passenger.seat);
+                        if (String(passenger._id) !== passengerId) {
+                            occupiedSeats.push(passenger.seat);
+                        }
                     })
                 })
 

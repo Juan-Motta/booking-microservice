@@ -158,7 +158,7 @@ const findOnePassengerAndUpdateById = (req, res) => {
             } else {
                 res.status(400).send(errors);
             }
-            isRepeatedSeat(rideId, [updatedPassenger.seat])
+            isRepeatedSeat(rideId, req.params.passenger_id, [updatedPassenger.seat])
                 .then(() => {
 
                     BookingSchema.findOneAndUpdate(
