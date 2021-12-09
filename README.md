@@ -200,3 +200,7 @@ http://localhost:3000/api/bookings/id/<id reserva>
 #### 1.0.0
 
 * Creada version de produccion.
+
+#### 1.0.1
+
+* Corregido error en el controlador, en la funcion createBooking, el cual no permitia crear una reserva al momento de llamar a la funcion isRepeatedSeat, la cual necesitaba un tercer argumento para funcionar y estaba diseñada para ser usada en la funcion findOneBookingAndUpdate. Creada nueva funcion isRepeatedSeatCreate la cual soluciona los problemas.

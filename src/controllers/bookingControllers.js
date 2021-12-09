@@ -3,12 +3,11 @@ import moment from 'moment';
 import BookingSchema from '../models/bookingModel';
 import bookingValidations from '../helpers/bookingValidators';
 import { passengerValidations, passengerUpdateValidations } from '../helpers/passengerValidators';
-import isRepeatedSeat from '../helpers/seatValidators'
+import { isRepeatedSeat, isRepeatedSeatCreate } from '../helpers/seatValidators'
 
 const createBooking = (req, res) => {
     // data from req
     const { ride_id, user_id, passengers } = req.body;
-
     // data validations
     const bookingErrors = bookingValidations(ride_id, user_id, passengers);
     const passengerErrors = passengerValidations(passengers);
@@ -24,10 +23,11 @@ const createBooking = (req, res) => {
         seats.push(passenger.seat)
     })
 
+
     // if any errors
     if (Object.keys(errors).length === 0) {
         // validate if seats selected are occupied by someone else
-        isRepeatedSeat(ride_id, seats)
+        isRepeatedSeatCreate(ride_id, seats)
             .then(() => {
                 // create booking object
                 const booking = new BookingSchema();
